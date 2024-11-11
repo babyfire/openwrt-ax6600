@@ -9,6 +9,8 @@ startTime=`date +%s`
 export GCC_COLORS='error=01;31:warning=01;35:note=01;36:caret=01;32:locus=01:quote=01'
 
 make download -j${THREAD}
+find dl -size -1024c -exec ls -l {} \;
+find dl -size -1024c -exec rm -f {} \;
 make -j${THREAD} V=sc
 
 endTime=`date +%s`
