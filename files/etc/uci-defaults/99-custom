@@ -1,0 +1,49 @@
+
+# Uncomment the following line to capture all output to a log file
+exec > /root/uci-defaults.log 2>&1
+
+# System
+uci set system.@system[0].hostname='JDC_AX6600'
+uci set system.@system[0].zonename='Asia/Shanghai'
+uci set system.@system[0].timezone='CST-8'
+
+# wireless-radio0
+uci set wireless.radio0.channel='auto'
+uci set wireless.radio0.country='CN'
+uci set wireless.default_radio0.ssid='JNET_5G'
+uci set wireless.default_radio0.encryption='psk2'
+uci set wireless.default_radio0.key='ABCD1234'
+uci delete wireless.radio0.disabled
+uci delete wireless.default_radio0.disabled
+
+# wireless-radio1
+uci set wireless.radio1.channel='auto
+uci set wireless.radio1.country='CN'
+uci set wireless.default_radio1.ssid='JNET'
+uci set wireless.default_radio1.encryption='psk2'
+uci set wireless.default_radio1.key='ABCD1234'
+uci delete wireless.radio1.disabled
+uci delete wireless.default_radio1.disabled
+
+# wireless-radio2
+uci set wireless.radio2.channel='auto'
+uci set wireless.radio2.htmode='HE160'
+uci set wireless.radio2.country='CN'
+uci set wireless.default_radio2.ssid='JNET_GAME'
+uci set wireless.default_radio2.encryption='psk2'
+uci set wireless.default_radio2.key='Eric2023@@'
+uci delete wireless.default_radio2.disabled
+uci delete wireless.radio2.disabled
+uci delete wireless.default_radio2.disabled
+
+# lan
+uci set network.lan.ipaddr='192.168.68.1'
+
+uci commit
+
+# root password
+NEW_PASSWD=admin
+passwd <<EOF
+$NEW_PASSWD
+$NEW_PASSWD
+EOF
